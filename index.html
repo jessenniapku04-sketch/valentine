@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>for bebe 💖</title>
+
+<style>
+body{
+  margin:0;
+  padding:0;
+  height:100vh;
+  font-family:'Comic Sans MS',cursive;
+  background:linear-gradient(135deg,#ff9ecf,#ffc2e6,#ffd9f5);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  overflow:hidden;
+  transition:1s;
+}
+
+.blur{
+  backdrop-filter:blur(8px);
+}
+
+.container{
+  background:rgba(255,255,255,0.95);
+  padding:35px;
+  border-radius:30px;
+  box-shadow:0 0 40px rgba(255,0,128,0.4);
+  max-width:600px;
+  position:relative;
+  animation:fadeIn 2s ease;
+}
+
+h1{
+  color:#ff3399;
+  text-shadow:0 0 20px #ff99cc;
+  animation:pulse 2s infinite;
+}
+
+button{
+  padding:10px 20px;
+  border:none;
+  border-radius:25px;
+  font-size:16px;
+  cursor:pointer;
+  margin:10px;
+  transition:0.3s;
+}
+
+.main-btn{
+  background:#ff4da6;
+  color:white;
+}
+
+.yes{
+  background:#ff66b2;
+  color:white;
+}
+
+.no{
+  background:#ddd;
+}
+
+button:hover{
+  transform:scale(1.1);
+}
+
+#content{
+  margin-top:20px;
+  color:#cc0066;
+  min-height:150px;
+  white-space:pre-line;
+  font-size:17px;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.05);}
+  100%{transform:scale(1);}
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+.heart{
+  position:absolute;
+  font-size:20px;
+  animation:fall 6s linear infinite;
+}
+
+@keyframes fall{
+  0%{top:-10px;opacity:1;}
+  100%{top:100vh;opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>ALOO CAYANGG TETEN,<br>HAPPY VALENTINE YAHH!🫰🏻💖</h1>
+  <button class="main-btn" onclick="start()">pencet aku 🫶🏻</button>
+
+  <div id="question" style="display:none;">
+    <p>kamu sayang aku ga? 😳</p>
+    <button class="yes" onclick="nextQ()">sayang banget 🫰🏻💖</button>
+    <button class="no" onmouseover="run(this)">engga</button>
+  </div>
+
+  <div id="question2" style="display:none;">
+    <p>kamu cinta aku ga? 🥺💓</p>
+    <button class="yes" onclick="showLetter()">cinta bangettt 💘</button>
+    <button class="no" onmouseover="run(this)">engga</button>
+  </div>
+
+  <div id="content"></div>
+</div>
+
+<!-- Music All of Me -->
+<iframe id="music"
+width="0"
+height="0"
+style="display:none"
+src="https://www.youtube.com/embed/450p7goxZqg?autoplay=1&loop=1&playlist=450p7goxZqg"
+frameborder="0"
+allow="autoplay">
+</iframe>
+
+<script>
+
+function start(){
+  document.querySelector(".main-btn").style.display="none";
+  document.getElementById("question").style.display="block";
+}
+
+function nextQ(){
+  document.getElementById("question").style.display="none";
+  document.getElementById("question2").style.display="block";
+}
+
+function showLetter(){
+  document.getElementById("question2").style.display="none";
+  document.body.classList.add("blur");
+  document.getElementById("music").style.display="block";
+
+  const text = `bebe,makasii yaa uda selalu ada buat aku sayang,aku bersyukur ada bebe di hidup aku,sejak kamu ada aku bahagia terus,fr bebee😛💓,aku bangga sama bebe,bebe cowo baik,bebe selalu nge usahain yg terbaik buat aku,bebe ga pernah kasar ke aku,bebe selalu mastiin kalo aku gabakal sedih sama bebe,bebe cowo kuat,semoga kamu di kasi kesehatan selalu ya sayang,semoga jalan kamu di permudah,aku bakal dampinginn kamu dari awal jauh,sampe nanti kita deket ya bebe,bismillah,papaii cayankk,love u bebe mwaa🫰🏻💖💖💖,sekali lagi happy valentine bebee💓💓`;
+
+  let i=0;
+  function typing(){
+    if(i < text.length){
+      document.getElementById("content").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing,40);
+    } else {
+      showDays();
+    }
+  }
+  typing();
+}
+
+function showDays(){
+  const startDate = new Date("2025-08-01");
+  const today = new Date();
+  const diffTime = today - startDate;
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+  const daysText = document.createElement("p");
+  daysText.innerHTML = `<br><br>💞 kita udah bareng selama <b>${diffDays}</b> hari sejak Agustus 💖`;
+  document.getElementById("content").appendChild(daysText);
+}
+
+function run(btn){
+  btn.style.position="absolute";
+  btn.style.top=Math.random()*300+"px";
+  btn.style.left=Math.random()*300+"px";
+}
+
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerText="💖";
+  heart.style.left=Math.random()*window.innerWidth+"px";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,400);
+
+</script>
+
+</body>
+</html>
